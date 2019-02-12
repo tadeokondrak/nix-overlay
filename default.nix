@@ -8,7 +8,6 @@ self: super: {
   cum = super.callPackage ./pkgs/cum { };
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
-  fff = super.callPackage ./pkgs/fff { };
   kiwmi = super.callPackage ./pkgs/kiwmi { };
   mocha = super.callPackage ./pkgs/mocha { };
   mpd-rich-presence-discord = super.callPackage ./pkgs/mpd-rich-presence-discord { };
