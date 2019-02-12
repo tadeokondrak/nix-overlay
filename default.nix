@@ -3,7 +3,7 @@ self: super: {
   aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
   betterdiscordctl = super.callPackage ./pkgs/betterdiscordctl { };
-  caprice = super.callPackage ./pkgs/caprice { };
+  caprine = super.callPackage ./pkgs/caprine { };
   celeste = super.callPackage ./pkgs/celeste { };
   cum = super.callPackage ./pkgs/cum { };
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
