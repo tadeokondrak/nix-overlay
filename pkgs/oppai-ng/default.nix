@@ -16,6 +16,6 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    install -D oppai $out/bin
+    install -D oppai $out/bin/oppai
   '';
 }
