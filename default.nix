@@ -6,6 +6,7 @@ self: super: {
   caprine = super.callPackage ./pkgs/caprine { };
   celeste = super.callPackage ./pkgs/celeste { };
   cum = super.callPackage ./pkgs/cum { };
+  btpd = super.callPackage ./pkgs/btpd { };
   discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
