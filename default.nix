@@ -5,6 +5,7 @@ self: super: {
   betterdiscordctl = super.callPackage ./pkgs/betterdiscordctl { };
   caprine = super.callPackage ./pkgs/caprine { };
   celeste = super.callPackage ./pkgs/celeste { };
+  cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
   cum = super.callPackage ./pkgs/cum { };
   btpd = super.callPackage ./pkgs/btpd { };
   discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
