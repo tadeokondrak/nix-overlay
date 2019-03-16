@@ -1,4 +1,4 @@
-{ stdenv, writeScript, bash, wine, wget, coreutils, findutils, osu-wineprefix }:
+{ stdenv, writeShellScriptBin, bash, wine, wget, coreutils, findutils, osu-wineprefix, discord-rpc-wine }:
 
 stdenv.mkDerivation rec {
   pname = "osu-wine";
@@ -8,16 +8,17 @@ stdenv.mkDerivation rec {
   buildInputs = [ bash ];
   path = stdenv.lib.makeSearchPath "bin" [ wine wget coreutils findutils ];
 
-  src = writeScript "osu" ''
-    #!/usr/bin/env bash
+  src = writeShellScriptBin "osu" ''
     set -e
     PATH="${path}"
     PREFIXSRC="${osu-wineprefix}"
-    BASEDIR="$HOME/.local/share/osu-wine"
+    BASEDIR="''${XDG_DATA_HOME:-$HOME/.local/share}/osu-wine"
     OSUDIR="$BASEDIR/osu"
     export WINEARCH="win32"
     export WINEPREFIX="$BASEDIR/prefix_$WINEARCH"
     export WINEDEBUG="-all"
+    export WINEDLLPATH="${discord-rpc-wine}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
+    export WINEDLLOVERRIDES="discord-rpc"
 
     mkdir -p "$BASEDIR" "$OSUDIR" "$WINEPREFIX"
 
@@ -62,7 +63,7 @@ stdenv.mkDerivation rec {
   '';
 
   unpackPhase = ''
-    cp $src osu
+    cp $src/bin/osu osu
   '';
 
   installPhase = ''

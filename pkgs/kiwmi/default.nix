@@ -1,17 +1,18 @@
-{ stdenv, rustPlatform, fetchFromGitHub }:
+{ stdenv, fetchFromGitHub, wlroots, wayland, udev, libGL, libX11, meson, ninja, pkg-config }:
 
-rustPlatform.buildRustPackage rec {
+stdenv.mkDerivation rec {
   pname = "kiwmi";
-  version = "20180131.0";
-  name = "${pname}-${version}";
+  version = "b5e30f356a95750346e2273f1e4e29810f912f5c";
 
   src = fetchFromGitHub {
     owner = "buffet";
     repo = pname;
-    rev = "f3557edd4828d7b97ec4d06d88294b88ca843243";
-    sha256 = "0daj1pnjq9djfxbgdp11gpbbn7vlsw53m199dsanff1vqwmhrhic";
-    fetchSubmodules = true;
+    rev = version;
+    sha256 = stdenv.lib.fakeSha256;
   };
 
-  cargoSha256 = "0smqncdf01a462scmxq0n0wr2bxfkjbyn5jv9bwzzhw5q5i040l1";
+  nativeBuildInputs = [ meson ninja pkg-config ];
+  buildInputs = [ wlroots wayland udev libGL libX11 ];
+
+  mesonFlags = [ "-Dkiwmi-version=${version}" ];
 }

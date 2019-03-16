@@ -1,0 +1,13 @@
+diff --git a/mydiscord/app.py b/mydiscord/app.py
+index 36627ff..548940e 100644
+--- a/mydiscord/app.py
++++ b/mydiscord/app.py
+@@ -59,7 +59,7 @@ def discord_process():
+         except psutil.AccessDenied:
+             pass
+         else:
+-            if exe.startswith('Discord') and not exe.endswith('Helper'):
++            if 'discord' in exe.lower() and not 'helper' in exe.lower():
+                 entry = executables.get(exe)
+ 
+                 if entry is None:

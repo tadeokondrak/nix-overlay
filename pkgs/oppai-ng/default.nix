@@ -13,9 +13,12 @@ stdenv.mkDerivation rec {
 
   buildPhase = ''
     ./build
+    ./libbuild
   '';
 
   installPhase = ''
     install -D oppai $out/bin/oppai
+    install -D oppai.c $out/include/oppai.c
+    install -D liboppai.so $out/lib/liboppai.so
   '';
 }

@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
 
   cmakeFlags = [
     "-DBUILD_SHARED_LIBS=true"
-    "-DBUILD_EXAMPLES=" + (if examples then "true" else "false")
+    "-DBUILD_EXAMPLES=${if examples then "true" else "false"}"
   ];
 
   meta = with stdenv.lib; {
