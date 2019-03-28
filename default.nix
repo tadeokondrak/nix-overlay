@@ -1,11 +1,11 @@
-self: super: {
+self: super: rec {
+  aegisub = super.callPackage ./pkgs/aegisub { };
   alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
   aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
   betterdiscordctl = super.callPackage ./pkgs/betterdiscordctl { };
   btpd = super.callPackage ./pkgs/btpd { };
   caprine = super.callPackage ./pkgs/caprine { };
-  glpaper = super.callPackage ./pkgs/glpaper { };
   celeste = super.callPackage ./pkgs/celeste { };
   cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
   cum = super.callPackage ./pkgs/cum { };
@@ -13,25 +13,31 @@ self: super: {
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
   discord-rpc-wine-32 = super.pkgsi686Linux.callPackage ./pkgs/rpc-wine { };
+  glpaper = super.callPackage ./pkgs/glpaper { };
   gogextract = super.callPackage ./pkgs/gogextract { };
   ix = super.libsForQt5.callPackage ./pkgs/ix { };
   kiwmi = super.callPackage ./pkgs/kiwmi { };
+  libmfao = super.callPackage ./pkgs/libmfao { };
   mocha = super.callPackage ./pkgs/mocha { };
   mpd-rich-presence-discord = super.callPackage ./pkgs/mpd-rich-presence-discord { };
   mydiscord = super.callPackage ./pkgs/mydiscord { };
   oppai-ng = super.callPackage ./pkgs/oppai-ng { };
-  libmfao = super.callPackage ./pkgs/libmfao { };
-  pyvizio = super.callPackage ./pkgs/pyvizio { };
   osu-pp = super.callPackage ./pkgs/osu-pp { };
   osu-wine = super.callPackage ./pkgs/osu-wine { };
   osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix { };
   pythOCR = super.callPackage ./pkgs/pythOCR { };
+  pyvizio = super.callPackage ./pkgs/pyvizio { };
   sciter = super.callPackage ./pkgs/sciter { };
   shenzhen-io = super.callPackage ./pkgs/shenzhen-io{ };
   sndio = super.callPackage ./pkgs/sndio { };
+  vapoursynth-editor = super.libsForQt5.callPackage ./pkgs/vapoursynth-editor { };
   vapoursynth-plugins = super.callPackage ./pkgs/vapoursynth-plugins { };
   w3 = super.callPackage ./pkgs/w3 { };
   windowchef = super.callPackage ./pkgs/windowchef { };
+
+  moonscript = super.callPackage ./pkgs/moonscript {
+    alt-getopt = super.callPackage ./pkgs/alt-getopt { };
+  };
 
   discord-css = super.callPackage ./pkgs/discord-css {
     cssFile = (super.writeText "discord.css" "");

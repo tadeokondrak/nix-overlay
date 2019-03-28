@@ -1,0 +1,20 @@
+diff --git a/libaegisub/unix/path.cpp b/libaegisub/unix/path.cpp
+index 0541e0dbe..9d65ca94f 100644
+--- a/libaegisub/unix/path.cpp
++++ b/libaegisub/unix/path.cpp
+@@ -44,7 +44,14 @@ void Path::FillPlatformSpecificPaths() {
+ 	agi::fs::path home = home_dir();
+ 	SetToken("?user", home/".aegisub");
+ 	SetToken("?local", home/".aegisub");
+-	SetToken("?data", P_DATA);
++
++	const char *env = getenv("AEGISUB_DATA_DIR");
++	if (env) {
++		SetToken("?data", env);
++	} else {
++		SetToken("?data", P_DATA);
++	}
++
+ 	SetToken("?dictionary", "/usr/share/hunspell");
+ #else
+ 	agi::fs::path app_support = agi::util::GetApplicationSupportDirectory();
