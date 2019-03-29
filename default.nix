@@ -9,7 +9,7 @@ self: super: rec {
   celeste = super.callPackage ./pkgs/celeste { };
   cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
   cum = super.callPackage ./pkgs/cum { };
-  discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
+  discord-player = super.libsForQt5.callPackage ./pkgs/discord-player { };
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
   discord-rpc-wine-32 = super.pkgsi686Linux.callPackage ./pkgs/rpc-wine { };
@@ -27,6 +27,7 @@ self: super: rec {
   osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix { };
   pythOCR = super.callPackage ./pkgs/pythOCR { };
   pyvizio = super.callPackage ./pkgs/pyvizio { };
+  rootbar = super.callPackage ./pkgs/rootbar { };
   sciter = super.callPackage ./pkgs/sciter { };
   shenzhen-io = super.callPackage ./pkgs/shenzhen-io{ };
   sndio = super.callPackage ./pkgs/sndio { };
