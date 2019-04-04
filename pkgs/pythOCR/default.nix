@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
     sha256 = "0k5v9ljk7ghd0hvqddk67yv9x30i236ly3zinrspbsnpfns7qfnw";
   };
   buildInputs = [ makeWrapper ];
-  propagatedBuildInputs = with python3Packages; [ colorama ConfigArgParse pyenchant enchant numpy opencv3 tqdm ];
+  propagatedBuildInputs = with python3Packages; [ vapoursynth colorama ConfigArgParse pyenchant enchant numpy opencv3 tqdm ];
   installPhase = ''
     install -D pythoCR.py $out/bin/pythocr
     sed -i '1i#!${python3.withPackages (_: propagatedBuildInputs)}/bin/python' $out/bin/pythocr

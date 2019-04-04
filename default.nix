@@ -9,7 +9,7 @@ self: super: rec {
   celeste = super.callPackage ./pkgs/celeste { };
   cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
   cum = super.callPackage ./pkgs/cum { };
-  discord-player = super.libsForQt5.callPackage ./pkgs/discord-player { };
+  discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
   discord-rpc-wine-32 = super.pkgsi686Linux.callPackage ./pkgs/rpc-wine { };
@@ -56,13 +56,6 @@ self: super: rec {
     postPatch = self.postPatch or "" + ''
       patch -Np1 < ${winealsa_patch}
       # patch -Np1 < $'''{winepulse_patch}
-    '';
-  });
-
-  vapoursynth = super.vapoursynth.overrideAttrs (self: {
-    buildInputs = self.buildInputs ++ (with super; [ makeWrapper python3 ]);
-    postInstall = ''
-      wrapProgram $out/bin/vspipe --prefix PYTHONPATH : "$(toPythonPath $out)"
     '';
   });
 }

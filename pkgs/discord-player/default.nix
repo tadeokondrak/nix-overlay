@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, qmake, qtbase, qtwebengine }:
+{ stdenv, fetchFromGitHub, makeWrapper, qmake, qtbase, qtwebengine, qtwayland }:
 
 stdenv.mkDerivation rec {
   pname = "discord-player";
@@ -11,11 +11,13 @@ stdenv.mkDerivation rec {
     sha256 = "06wgy52yf13n4568jc55rvl22yzhmcajhvzqk11a6q4m5xfgfr3k";
   };
 
-  nativeBuildInputs = [ qmake ];
+  nativeBuildInputs = [ qmake makeWrapper ];
   buildInputs = [ qtbase qtwebengine ];
 
   installPhase = ''
     install -D discord-player $out/bin/discord-player
+    wrapProgram $out/bin/discord-player \
+        --prefix LD_LIBRARY_PATH : ${qtwayland}/lib
   '';
 
   meta = with stdenv.lib; {
