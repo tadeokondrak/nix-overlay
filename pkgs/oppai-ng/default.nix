@@ -21,4 +21,12 @@ stdenv.mkDerivation rec {
     install -D oppai.c $out/include/oppai.c
     install -D liboppai.so $out/lib/liboppai.so
   '';
+
+  meta = with stdenv.lib; {
+    description = "difficulty and pp calculator for osu!";
+    homepage = https://github.com/Francesco149/oppai-ng;
+    license = licenses.unlicense;
+    maintainers = with maintainers; [ tadeokondrak ];
+    platform = platforms.all;
+  };
 }
