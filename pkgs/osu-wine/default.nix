@@ -1,75 +1,60 @@
-{ stdenv, writeShellScriptBin, bash, wine, wget, coreutils, findutils, osu-wineprefix, discord-rpc-wine }:
+{ stdenv, writers, bash, wine, wget, coreutils, findutils, osu-wineprefix, discord-rpc-wine }:
 
-stdenv.mkDerivation rec {
-  pname = "osu-wine";
-  version = "0.1.0";
-  name = "${pname}-${version}";
+(writers.writeBashBin "osu" ''
+  set -e
+  prefixsrc="${osu-wineprefix}"
+  basedir="''${XDG_DATA_HOME:-$HOME/.local/share}/osu-wine"
+  osudir="$basedir/osu"
 
-  buildInputs = [ bash ];
-  path = stdenv.lib.makeSearchPath "bin" [ wine wget coreutils findutils ];
+  PATH="${stdenv.lib.makeSearchPath "bin" [ wine wget coreutils findutils ]}"
 
-  src = writeShellScriptBin "osu" ''
-    set -e
-    PATH="${path}"
-    PREFIXSRC="${osu-wineprefix}"
-    BASEDIR="''${XDG_DATA_HOME:-$HOME/.local/share}/osu-wine"
-    OSUDIR="$BASEDIR/osu"
-    export WINEARCH="win32"
-    export WINEPREFIX="$BASEDIR/prefix_$WINEARCH"
-    export WINEDEBUG="-all"
-    export WINEDLLPATH="${discord-rpc-wine}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
-    export WINEDLLOVERRIDES="discord-rpc"
+  export WINEARCH="win32"
+  export WINEPREFIX="$basedir/prefix_$WINEARCH"
+  export WINEDEBUG="-all"
+  export WINEDLLPATH="${discord-rpc-wine}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
+  export WINEDLLOVERRIDES="discord-rpc"
 
-    mkdir -p "$BASEDIR" "$OSUDIR" "$WINEPREFIX"
+  mkdir -p "$basedir" "$osudir" "$WINEPREFIX"
 
-    touch "$BASEDIR/.prefixsrc"
+  touch "$basedir/.prefixsrc"
 
-    [ "$PREFIXSRC" != "$(cat "$BASEDIR/.prefixsrc")" ] || [ ! -d "$WINEPREFIX" ] && {
-        echo "Creating wineprefix..."
+  [[ $prefixsrc != $(cat "$basedir/.prefixsrc") ]] && {
+      echo "Creating wineprefix..."
 
-        chmod -R 755 "$WINEPREFIX"
-        rm -rf "$WINEPREFIX"
-        rm -rf "$BASEDIR/home"
+      chmod -R 755 "$WINEPREFIX"
+      rm -rf "$WINEPREFIX"
+      rm -rf "$basedir/home"
 
-        mkdir "$WINEPREFIX"
+      mkdir "$WINEPREFIX"
 
-        cp $PREFIXSRC/{*.sig,*.reg} "$WINEPREFIX"
+      cp $prefixsrc/*.reg "$WINEPREFIX"
 
-        mkdir -p "$WINEPREFIX/drive_c"
-        ln -s "$PREFIXSRC/drive_c/"* "$WINEPREFIX/drive_c/"
+      mkdir -p "$WINEPREFIX/drive_c"
+      ln -s "$prefixsrc/drive_c/"* "$WINEPREFIX/drive_c/"
 
-        mkdir -p "$WINEPREFIX/dosdevices"
-        ln -s "../drive_c" "$WINEPREFIX/dosdevices/c:"
-        ln -s "../../osu" "$WINEPREFIX/dosdevices/x:"
+      mkdir -p "$WINEPREFIX/dosdevices"
+      ln -s "../drive_c" "$WINEPREFIX/dosdevices/c:"
+      ln -s "../../osu" "$WINEPREFIX/dosdevices/x:"
 
-        echo "$PREFIXSRC" > "$BASEDIR/.prefixsrc"
+      echo "$prefixsrc" > "$basedir/.prefixsrc"
 
-        echo "If you see an error about how the program can't be started, hit no."
+      echo "If you see an error about how the program can't be started, hit OK or No (twice)."
 
-        wineboot -u
-    }
+      wineboot -u
+  }
 
-    [ ! -f "$OSUDIR/osu!.exe" ] && {
-        wget "https://m1.ppy.sh/r/osu!install.exe" -O "$OSUDIR/osu!.exe"
-    }
+  [ ! -f "$osudir/osu!.exe" ] && {
+      wget "https://m1.ppy.sh/r/osu!install.exe" -O "$osudir/osu!.exe"
+  }
 
-    if [ -f "$1" ] && [[ "$1" =~ .*\.(osz|osz2|osr|osk) ]]; then
-        FILE="$1"; shift
-        mv -- "$FILE" "$OSUDIR/Temp"
-        exec wine "X:\\osu!.exe" "X:\\Temp\\$(basename -- "$FILE")" "$@"
-    else
-        exec wine "X:\\osu!.exe" "$@"
-    fi
-  '';
-
-  unpackPhase = ''
-    cp $src/bin/osu osu
-  '';
-
-  installPhase = ''
-    install -D osu $out/bin/osu
-  '';
-
+  if [ -f "$1" ] && [[ "$1" =~ .*\.(osz|osz2|osr|osk) ]]; then
+      FILE="$1"; shift
+      mv -- "$FILE" "$osudir/Temp"
+      exec wine "X:\\osu!.exe" "X:\\Temp\\$(basename -- "$FILE")" "$@"
+  else
+      exec wine "X:\\osu!.exe" "$@"
+  fi
+'') // {
   meta = with stdenv.lib; {
     description = "osu! wine installer";
     license = licenses.mit;

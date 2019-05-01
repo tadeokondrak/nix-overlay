@@ -1,9 +1,10 @@
-{ stdenv, fetchFromGitHub, alsaLib, sndio }:
+{ stdenv, fetchFromGitHub, pkgconfig, alsaLib, sndio }:
 
 stdenv.mkDerivation rec {
   pname = "alsa-sndio";
   version = "0.2";
 
+  nativeBuildInputs = [ pkgconfig ];
   buildInputs = [ sndio alsaLib ];
   installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
 

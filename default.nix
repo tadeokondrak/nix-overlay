@@ -9,6 +9,7 @@ self: super: rec {
   celeste = super.callPackage ./pkgs/celeste { };
   cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
   cum = super.callPackage ./pkgs/cum { };
+  custard = super.callPackage ./pkgs/custard { };
   discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
   discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
@@ -24,13 +25,13 @@ self: super: rec {
   oppai-ng = super.callPackage ./pkgs/oppai-ng { };
   osu-pp = super.callPackage ./pkgs/osu-pp { };
   osu-wine = super.callPackage ./pkgs/osu-wine { };
-  osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix { };
+  osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix{ };
   pythOCR = super.callPackage ./pkgs/pythOCR { };
   pyvizio = super.callPackage ./pkgs/pyvizio { };
   rootbar = super.callPackage ./pkgs/rootbar { };
   sciter = super.callPackage ./pkgs/sciter { };
   shenzhen-io = super.callPackage ./pkgs/shenzhen-io{ };
-  sndio = super.callPackage ./pkgs/sndio { };
+  #sndio = super.callPackage ./pkgs/sndio { };
   vapoursynth-editor = super.libsForQt5.callPackage ./pkgs/vapoursynth-editor { };
   vapoursynth-plugins = super.callPackage ./pkgs/vapoursynth-plugins { };
   w3 = super.callPackage ./pkgs/w3 { };
