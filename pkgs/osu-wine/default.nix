@@ -6,7 +6,7 @@
   basedir="''${XDG_DATA_HOME:-$HOME/.local/share}/osu-wine"
   osudir="$basedir/osu"
 
-  PATH="${stdenv.lib.makeSearchPath "bin" [ wine wget coreutils findutils ]}"
+  PATH="${stdenv.lib.makeSearchPath "bin" [ wine wget coreutils findutils ]}:$PATH"
 
   export WINEARCH="win32"
   export WINEPREFIX="$basedir/prefix_$WINEARCH"
