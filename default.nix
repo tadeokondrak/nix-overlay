@@ -1,5 +1,7 @@
 self: super: rec {
-  aegisub = super.callPackage ./pkgs/aegisub { };
+  ircdiscord = super.callPackage ./pkgs/ircdiscord { };
+  wl-clipboard-x11 = super.callPackage ./pkgs/wl-clipboard-x11 { };
+  #aegisub = super.callPackage ./pkgs/aegisub { };
   alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
   aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
@@ -31,8 +33,7 @@ self: super: rec {
   rootbar = super.callPackage ./pkgs/rootbar { };
   sciter = super.callPackage ./pkgs/sciter { };
   shenzhen-io = super.callPackage ./pkgs/shenzhen-io{ };
-  #sndio = super.callPackage ./pkgs/sndio { };
-  vapoursynth-editor = super.libsForQt5.callPackage ./pkgs/vapoursynth-editor { };
+#  vapoursynth-editor = super.libsForQt5.callPackage ./pkgs/vapoursynth-editor { };
   vapoursynth-plugins = super.callPackage ./pkgs/vapoursynth-plugins { };
   w3 = super.callPackage ./pkgs/w3 { };
   windowchef = super.callPackage ./pkgs/windowchef { };
@@ -41,9 +42,7 @@ self: super: rec {
     alt-getopt = super.callPackage ./pkgs/alt-getopt { };
   };
 
-  discord-css = super.callPackage ./pkgs/discord-css {
-    cssFile = (super.writeText "discord.css" "");
-  };
+  discord-css = super.callPackage ./pkgs/discord-css { };
 
   wine-osu = super.wineStaging.overrideDerivation (self: rec {
     winealsa_patch = super.fetchpatch ({
