@@ -2,7 +2,7 @@ self: super: rec {
   ircdiscord = super.callPackage ./pkgs/ircdiscord { };
   wl-clipboard-x11 = super.callPackage ./pkgs/wl-clipboard-x11 { };
   #aegisub = super.callPackage ./pkgs/aegisub { };
-  alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
+#  alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
   aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
   betterdiscordctl = super.callPackage ./pkgs/betterdiscordctl { };
@@ -10,10 +10,9 @@ self: super: rec {
   caprine = super.callPackage ./pkgs/caprine { };
   celeste = super.callPackage ./pkgs/celeste { };
   cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
-  cum = super.callPackage ./pkgs/cum { };
   custard = super.callPackage ./pkgs/custard { };
   discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
-  discord-rpc = super.callPackage ./pkgs/discord-rpc { };
+#  discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
   discord-rpc-wine-32 = super.pkgsi686Linux.callPackage ./pkgs/rpc-wine { };
   glpaper = super.callPackage ./pkgs/glpaper { };
@@ -24,7 +23,6 @@ self: super: rec {
   mocha = super.callPackage ./pkgs/mocha { };
   mpd-rich-presence-discord = super.callPackage ./pkgs/mpd-rich-presence-discord { };
   mydiscord = super.callPackage ./pkgs/mydiscord { };
-  oppai-ng = super.callPackage ./pkgs/oppai-ng { };
   osu-pp = super.callPackage ./pkgs/osu-pp { };
   osu-wine = super.callPackage ./pkgs/osu-wine { };
   osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix{ };
@@ -37,6 +35,7 @@ self: super: rec {
   vapoursynth-plugins = super.callPackage ./pkgs/vapoursynth-plugins { };
   w3 = super.callPackage ./pkgs/w3 { };
   windowchef = super.callPackage ./pkgs/windowchef { };
+  wlr-randr = super.callPackage ./pkgs/wlr-randr { };
 
   moonscript = super.callPackage ./pkgs/moonscript {
     alt-getopt = super.callPackage ./pkgs/alt-getopt { };

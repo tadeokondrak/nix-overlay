@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   pname = "rootbar";
-  version = "7119b6b34dc7";
+  version = "b37193337ed5";
 
   src = fetchhg {
     url = "https://hg.sr.ht/~scoopta/rootbar";
     rev = version;
-    sha256 = "0chwxbvb66hrmbqi6gz5kaf5lfr2z7vm685gpdk77j2c0ydbnmw3";
+    sha256 = "0kdy60jfwdrhbn895rp1wkpfpnfcq9npyhmnrw3bbrx43cnw0n47";
   };
 
   nativeBuildInputs = [ pkg-config ];

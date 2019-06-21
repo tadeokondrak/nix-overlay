@@ -1,4 +1,4 @@
-{ stdenv, writers, bash, wine, wget, coreutils, findutils, osu-wineprefix, discord-rpc-wine }:
+{ stdenv, writers, bash, wine, wget, coreutils, findutils, osu-wineprefix, discord-rpc-wine-32 }:
 
 (writers.writeBashBin "osu" ''
   set -e
@@ -10,11 +10,11 @@
 
   export WINEARCH="win32"
   export WINEPREFIX="$basedir/prefix_$WINEARCH"
-  export WINEDEBUG="-all"
-  export WINEDLLPATH="${discord-rpc-wine}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
-  export WINEDLLOVERRIDES="discord-rpc"
+  export WINEDEBUG="''${WINEDEBUG:--all}"
+  export WINEDLLPATH="${discord-rpc-wine-32}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
+  export WINEDLLOVERRIDES="discord-rpc=b"''${WINEDLLOVERRIDES:+','}$WINEDLLOVERRIDES
 
-  mkdir -p "$basedir" "$osudir" "$WINEPREFIX"
+  mkdir -p "$basedir" "$osudir/Temp" "$WINEPREFIX"
 
   touch "$basedir/.prefixsrc"
 

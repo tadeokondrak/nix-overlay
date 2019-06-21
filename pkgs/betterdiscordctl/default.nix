@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, git, nodejs, asar, discord }:
+{ stdenv, fetchFromGitHub, git, nodejs, nodePackages, discord }:
 
 stdenv.mkDerivation rec {
   pname = "betterdiscordctl";
@@ -6,12 +6,12 @@ stdenv.mkDerivation rec {
 
   src = fetchFromGitHub {
     owner = "bb010g";
-    repo = name;
+    repo = pname;
     rev = "2094539792a68595c294e3c4160f3d677366b29f";
-    sha256 = stdenv.lib.fakeSha256;
+    sha256 = "0hfqa7qppzvbb66jjqwpw6p18hkxjh20fld8nznrpjd8xrajz8kv";
   };
 
-  pathAdd = stdenv.lib.makeSearchPath "/bin" [ git nodejs asar ];
+  pathAdd = stdenv.lib.makeSearchPath "/bin" [ git nodejs nodePackages.asar ];
 
   installPhase = ''
     sed -i "s@^scan=/opt@scan=${discord}/opt@g" betterdiscordctl
