@@ -2,7 +2,7 @@ self: super: rec {
   ircdiscord = super.callPackage ./pkgs/ircdiscord { };
   wl-clipboard-x11 = super.callPackage ./pkgs/wl-clipboard-x11 { };
   #aegisub = super.callPackage ./pkgs/aegisub { };
-#  alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
+  #alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
   aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
   betterdiscordctl = super.callPackage ./pkgs/betterdiscordctl { };
@@ -12,7 +12,6 @@ self: super: rec {
   cemu = super.libsForQt5.callPackage ./pkgs/cemu { };
   custard = super.callPackage ./pkgs/custard { };
   discord-player = super.libsForQt511.callPackage ./pkgs/discord-player { };
-#  discord-rpc = super.callPackage ./pkgs/discord-rpc { };
   discord-rpc-wine = super.callPackage ./pkgs/rpc-wine { };
   discord-rpc-wine-32 = super.pkgsi686Linux.callPackage ./pkgs/rpc-wine { };
   glpaper = super.callPackage ./pkgs/glpaper { };
@@ -26,6 +25,7 @@ self: super: rec {
   osu-pp = super.callPackage ./pkgs/osu-pp { };
   osu-wine = super.callPackage ./pkgs/osu-wine { };
   osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix{ };
+  osu-wineprefix-exp = super.pkgsi686Linux.callPackage ./pkgs/osu-wineprefix/experimental.nix{ };
   pythOCR = super.callPackage ./pkgs/pythOCR { };
   pyvizio = super.callPackage ./pkgs/pyvizio { };
   rootbar = super.callPackage ./pkgs/rootbar { };
@@ -40,8 +40,6 @@ self: super: rec {
   moonscript = super.callPackage ./pkgs/moonscript {
     alt-getopt = super.callPackage ./pkgs/alt-getopt { };
   };
-
-  discord-css = super.callPackage ./pkgs/discord-css { };
 
   wine-osu = super.wineStaging.overrideDerivation (self: rec {
     winealsa_patch = super.fetchpatch ({
