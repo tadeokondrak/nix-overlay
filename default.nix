@@ -3,7 +3,7 @@ self: super: rec {
   wl-clipboard-x11 = super.callPackage ./pkgs/wl-clipboard-x11 { };
   #aegisub = super.callPackage ./pkgs/aegisub { };
   #alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
-  aucatctl = super.callPackage ./pkgs/aucatctl { };
+  #aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
   betterdiscordctl = super.callPackage ./pkgs/betterdiscordctl { };
   btpd = super.callPackage ./pkgs/btpd { };
