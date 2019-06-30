@@ -22,7 +22,6 @@ self: super: rec {
   mocha = super.callPackage ./pkgs/mocha { };
   mpd-rich-presence-discord = super.callPackage ./pkgs/mpd-rich-presence-discord { };
   mydiscord = super.callPackage ./pkgs/mydiscord { };
-  osu-pp = super.callPackage ./pkgs/osu-pp { };
   osu-wine = super.callPackage ./pkgs/osu-wine { };
   osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix{ };
   osu-wineprefix-exp = super.pkgsi686Linux.callPackage ./pkgs/osu-wineprefix/experimental.nix{ };
