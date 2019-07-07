@@ -2,24 +2,26 @@
 
 (writers.writeBashBin "osu" ''
   set -e
+
+  PATH="${stdenv.lib.makeSearchPath "bin" [ wine wget coreutils gnused ]}:$PATH"
+
   prefixsrc="${osu-wineprefix}"
   basedir="''${XDG_DATA_HOME:-$HOME/.local/share}/osu-wine"
   cfgdir="''${XDG_CONFIG_HOME:-$HOME/.config}/osu-wine"
   osudir="$basedir/osu"
 
-  PATH="${stdenv.lib.makeSearchPath "bin" [ wine wget coreutils gnused ]}:$PATH"
+  WINEARCH="win32"
+  WINEPREFIX="$basedir/prefix_$WINEARCH"
+  WINEDEBUG="''${WINEDEBUG:--all}"
+  WINEDLLPATH="${discord-rpc-wine-32}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
+  WINEDLLOVERRIDES="discord-rpc=b"''${WINEDLLOVERRIDES:+','}$WINEDLLOVERRIDES
 
-  export WINEARCH="win32"
-  export WINEPREFIX="$basedir/prefix_$WINEARCH"
-  export WINEDEBUG="''${WINEDEBUG:--all}"
-  export WINEDLLPATH="${discord-rpc-wine-32}/lib/wine"''${WINEDLLPATH:+':'}$WINEDLLPATH
-  export WINEDLLOVERRIDES="discord-rpc=b"''${WINEDLLOVERRIDES:+','}$WINEDLLOVERRIDES
+  TEMP="X:\\temp"
+  USERPROFILE="X:\\userprofile"
 
-  mkdir -p "$basedir" "$osudir" "$WINEPREFIX"
+  export WINEARCH WINEPREFIX WINEDEBUG WINEDLLPATH WINEDLLOVERRIDES TEMP USERPROFILE
 
-  mkdir -p "$osudir/temp" "$osudir/userprofile"
-  export TEMP="X:\\temp"
-  export USERPROFILE="X:\\userprofile"
+  mkdir -p "$basedir" "$osudir/{temp,userprofile}" "$WINEPREFIX"
 
   touch "$basedir/.prefixsrc"
 
@@ -49,16 +51,16 @@
       wget "https://m1.ppy.sh/r/osu!install.exe" -O "$osudir/osu!.exe"
 
   [[ -d $cfgdir ]] &&
-      cp -fv "$cfgdir/osu!."*.cfg "$osudir"
+      cp -fv "$cfgdir"/osu!.*.cfg "$osudir"
 
   [[ -d "$cfgdir/skins" ]] &&
-      ln -sf "$cfgdir/skins/"* "$osudir/Skins"
+      ln -sf "$cfgdir"/skins/* "$osudir/Skins"
 
-  if [ -f "$1" ] && [[ "$1" =~ .*\.(osz|osz2|osr|osk) ]]; then
-      FILE="$1"; shift
+  if [[ -f $1 && $1 =~ .*\.(osz|osz2|osr|osk) ]]; then
+      file="$1"; shift
       mkdir -p "$osudir/Temp"
       mv -- "$FILE" "$osudir/Temp"
-      exec wine "X:\\osu!.exe" "X:\\Temp\\$(basename -- "$FILE")" "$@"
+      exec wine "X:\\osu!.exe" "X:\\Temp\\$(basename -- "$file")" "$@"
   else
       exec wine "X:\\osu!.exe" "$@"
   fi

@@ -27,6 +27,7 @@ self: super: rec {
   osu-wineprefix-exp = super.pkgsi686Linux.callPackage ./pkgs/osu-wineprefix/experimental.nix{ };
   pythOCR = super.callPackage ./pkgs/pythOCR { };
   pyvizio = super.callPackage ./pkgs/pyvizio { };
+  reopen = super.callPackage ./pkgs/reopen { };
   rootbar = super.callPackage ./pkgs/rootbar { };
   sciter = super.callPackage ./pkgs/sciter { };
   shenzhen-io = super.callPackage ./pkgs/shenzhen-io{ };
