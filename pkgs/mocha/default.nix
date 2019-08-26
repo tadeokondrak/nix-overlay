@@ -6,7 +6,7 @@
 # environment.etc."opt/isl/licences/mocha.lic".source = ./<your file here>.lic;
 
 stdenv.mkDerivation rec {
-  name = "mochapro";
+  pname = "mochapro";
   version = "5.6.0-1601.gcc41335b663b";
 
   src = requireFile {

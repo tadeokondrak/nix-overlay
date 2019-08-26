@@ -1,7 +1,7 @@
 self: super: rec {
   ircdiscord = super.callPackage ./pkgs/ircdiscord { };
   wl-clipboard-x11 = super.callPackage ./pkgs/wl-clipboard-x11 { };
-  #aegisub = super.callPackage ./pkgs/aegisub { };
+  aegisub = super.callPackage ./pkgs/aegisub { };
   #alsa-sndio = super.callPackage ./pkgs/alsa-sndio { };
   #aucatctl = super.callPackage ./pkgs/aucatctl { };
   beautifuldiscord = super.callPackage ./pkgs/beautifuldiscord { };
@@ -20,30 +20,29 @@ self: super: rec {
   kiwmi = super.callPackage ./pkgs/kiwmi { };
   libmfao = super.callPackage ./pkgs/libmfao { };
   mocha = super.callPackage ./pkgs/mocha { };
-  mpd-rich-presence-discord = super.callPackage ./pkgs/mpd-rich-presence-discord { };
+  mpd-rich-presence-discord =
+    super.callPackage ./pkgs/mpd-rich-presence-discord { };
   mydiscord = super.callPackage ./pkgs/mydiscord { };
   osu-wine = super.callPackage ./pkgs/osu-wine { };
-  osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix{ };
-  osu-wineprefix-exp = super.pkgsi686Linux.callPackage ./pkgs/osu-wineprefix/experimental.nix{ };
+  osu-wineprefix = super.callPackage ./pkgs/osu-wineprefix { };
+  osu-wineprefix-exp =
+    super.pkgsi686Linux.callPackage ./pkgs/osu-wineprefix/experimental.nix { };
   pythOCR = super.callPackage ./pkgs/pythOCR { };
   pyvizio = super.callPackage ./pkgs/pyvizio { };
   reopen = super.callPackage ./pkgs/reopen { };
   rootbar = super.callPackage ./pkgs/rootbar { };
   sciter = super.callPackage ./pkgs/sciter { };
-  shenzhen-io = super.callPackage ./pkgs/shenzhen-io{ };
-#  vapoursynth-editor = super.libsForQt5.callPackage ./pkgs/vapoursynth-editor { };
+  shenzhen-io = super.callPackage ./pkgs/shenzhen-io { };
+  #  vapoursynth-editor = super.libsForQt5.callPackage ./pkgs/vapoursynth-editor { };
   vapoursynth-plugins = super.callPackage ./pkgs/vapoursynth-plugins { };
   w3 = super.callPackage ./pkgs/w3 { };
   windowchef = super.callPackage ./pkgs/windowchef { };
   wlr-randr = super.callPackage ./pkgs/wlr-randr { };
 
-  moonscript = super.callPackage ./pkgs/moonscript {
-    alt-getopt = super.callPackage ./pkgs/alt-getopt { };
-  };
-
   wine-osu = super.wineStaging.overrideDerivation (self: rec {
     winealsa_patch = super.fetchpatch ({
-      url = "https://aur.archlinux.org/cgit/aur.git/plain/winealsa_latency.patch?h=wine-osu";
+      url =
+        "https://aur.archlinux.org/cgit/aur.git/plain/winealsa_latency.patch?h=wine-osu";
       sha256 = "1sv7lx5hahfiyk7y466mn3xx1mb5qw396lpgwg9a97l9aqk30ql5";
     });
     # winepulse_patch = super.fetchpatch {

@@ -2,13 +2,13 @@
 
 stdenv.mkDerivation rec {
   pname = "reopen";
-  version = "e12088f0780a2b7f0bfe43dcc022aa52396ab5df";
+  version = "653a2e6772c0ff96ba195c65655f457c1002629f";
 
   src = fetchFromGitHub {
     owner = "tadeokondrak";
     repo = pname;
     rev = version;
-    sha256 = "0rj4syfxnjbfparrs7cfamwyb7bjl59c6j0ag5zxfigpw98l18g5";
+    sha256 = "13gi6fq6a56vmpn9z3w5mca0lfrdh23nbwlljyng8akwcglinl2n";
   };
 
   makeFlags = [ "PREFIX=$(out)" ];
