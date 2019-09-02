@@ -25,7 +25,7 @@
 
   touch "$basedir/.prefixsrc"
 
-  [[ ! -f "$basedir/.prefixsrc" || $prefixsrc != $(cat "$basedir/.prefixsrc") ]] && {
+  [[ ! -f $basedir/.prefixsrc || $prefixsrc != $(< "$basedir/.prefixsrc") ]] && {
       echo "Creating wineprefix..."
 
       rm -rf "$WINEPREFIX"
