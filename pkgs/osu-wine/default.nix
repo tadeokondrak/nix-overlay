@@ -21,7 +21,7 @@
 
   export WINEARCH WINEPREFIX WINEDEBUG WINEDLLPATH WINEDLLOVERRIDES TEMP USERPROFILE
 
-  mkdir -p "$basedir" "$osudir/{temp,userprofile}" "$WINEPREFIX"
+  mkdir -p "$basedir" "$osudir/"{temp,userprofile} "$WINEPREFIX"
 
   touch "$basedir/.prefixsrc"
 
@@ -53,8 +53,10 @@
   [[ -d $cfgdir ]] &&
       cp -fv "$cfgdir"/osu!.*.cfg "$osudir"
 
-  [[ -d "$cfgdir/skins" ]] &&
+  [[ -d "$cfgdir/skins" ]] && {
+      mkdir -p "$osudir/Skins"
       ln -sf "$cfgdir"/skins/* "$osudir/Skins"
+  }
 
   if [[ -f $1 && $1 =~ .*\.(osz|osz2|osr|osk) ]]; then
       file="$1"; shift
